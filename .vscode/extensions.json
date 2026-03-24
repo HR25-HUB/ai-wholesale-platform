@@ -1,0 +1,30 @@
+{
+  "recommendations": [
+    // Python
+    "ms-python.python",
+    "ms-python.debugpy",
+    "charliermarsh.ruff",
+    "ms-python.mypy-type-checker",
+
+    // GitHub Copilot
+    "github.copilot",
+    "github.copilot-chat",
+
+    // Git
+    "eamodio.gitlens",
+    "mhutchie.git-graph",
+
+    // Docker
+    "ms-azuretools.vscode-docker",
+
+    // Data / API
+    "ms-toolsai.jupyter",
+    "humao.rest-client",
+    "redhat.vscode-yaml",
+
+    // Quality of Life
+    "esbenp.prettier-vscode",
+    "streetsidesoftware.code-spell-checker",
+    "gruntfuggly.todo-tree"
+  ]
+}
