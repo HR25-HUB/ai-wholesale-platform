@@ -1,0 +1,15 @@
+
+[project]
+name = "ai_wholesale_platform"
+version = "0.2.0"
+dependencies = [
+    "pydantic",
+    "prefect",
+    "fastapi",
+    "uvicorn",
+    "opensearch-py",
+    "streamlit"
+]
+
+[tool.setuptools.packages.find]
+include = ["app*", "agents*", "flows*", "ai_platform*", "contracts*", "dashboards*", "scripts*"]

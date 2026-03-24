@@ -1,0 +1,22 @@
+
+version: "3"
+
+services:
+
+  redpanda:
+    image: redpandadata/redpanda
+    ports:
+      - "9092:9092"
+
+  opensearch:
+    image: opensearchproject/opensearch:2.15.0
+    environment:
+      - discovery.type=single-node
+      - DISABLE_SECURITY_PLUGIN=true
+    ports:
+      - "9200:9200"
+
+  prefect:
+    image: prefecthq/prefect
+    ports:
+      - "4200:4200"

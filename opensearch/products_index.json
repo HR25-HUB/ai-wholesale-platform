@@ -1,0 +1,12 @@
+
+{
+ "settings": {
+  "index": { "knn": true }
+ },
+ "mappings": {
+  "properties": {
+   "name": { "type": "text" },
+   "manufacturer": { "type": "keyword" }
+  }
+ }
+}
