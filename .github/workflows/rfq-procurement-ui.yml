@@ -1,0 +1,31 @@
+name: RFQ Procurement UI
+
+on:
+  pull_request:
+    paths:
+      - "apps/rfq-procurement-ui/**"
+      - ".github/workflows/rfq-procurement-ui.yml"
+  push:
+    branches: [main]
+    paths:
+      - "apps/rfq-procurement-ui/**"
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/rfq-procurement-ui
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.15.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm build
