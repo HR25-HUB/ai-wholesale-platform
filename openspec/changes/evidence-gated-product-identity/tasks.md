@@ -2,9 +2,9 @@
 
 ## Phase 1 — Domain gate
 
-- [ ] Add Product Identity domain models.
-- [ ] Implement deterministic `EvidencePolicy`.
-- [ ] Add four policy tests:
+- [x] Add Product Identity domain models.
+- [x] Implement deterministic `EvidencePolicy`.
+- [x] Add four policy tests:
   - complete evidence -> `ACCEPTED`;
   - missing evidence -> `REVIEW_REQUIRED`;
   - unresolved evidence -> `REVIEW_REQUIRED`;
@@ -12,27 +12,29 @@
 
 ## Phase 2 — In-memory application slice
 
-- [ ] Add `ResolveProductIdentityCommand` and result contract.
-- [ ] Add `SearchPort` and `MultimodalModelPort` protocols.
-- [ ] Implement `ResolveProductIdentityHandler`.
-- [ ] Add `FakeSearchPort` and `FakeMultimodalModelPort`.
-- [ ] Add an application test proving the end-to-end in-memory path.
+- [x] Add `ResolveProductIdentityCommand` and result contract.
+- [x] Add `SearchPort` and `MultimodalModelPort` protocols.
+- [x] Implement `ResolveProductIdentityHandler`.
+- [x] Add `FakeSearchPort` and `FakeMultimodalModelPort`.
+- [x] Add an application test proving the end-to-end in-memory path.
 
 ## Phase 3 — Golden ABB case
 
-- [ ] Add golden fixture for `ABB S203-C16 автомат 3P 16A`.
-- [ ] Assert expected manufacturer, product code and critical attributes.
-- [ ] Add evidence mutation test proving removal of critical evidence forces `REVIEW_REQUIRED`.
+- [x] Add golden fixture for `ABB S203-C16 автомат 3P 16A`.
+- [x] Assert expected manufacturer, product code and critical attributes.
+- [x] Add evidence mutation test proving removal of critical evidence forces `REVIEW_REQUIRED`.
 
 ## Phase 4 — Infrastructure replacement
 
-- [ ] Implement `OpenSearchAdapter` behind `SearchPort`.
+- [x] Implement `OpenSearchAdapter` behind `SearchPort`.
+- [x] Add a dedicated `product_evidence` index mapping and hybrid search pipeline bootstrap.
+- [x] Add OpenSearch query/mapping contract tests without requiring a live cluster in CI.
 - [ ] Implement real multimodal model adapter behind `MultimodalModelPort`.
-- [ ] Keep domain/application tests unchanged.
+- [x] Keep domain/application tests unchanged.
 
 ## Quality gate
 
-- [ ] `pytest` green.
-- [ ] `ruff check` green.
-- [ ] `pyrefly check` green once configured in repository tooling.
-- [ ] Unsupported accepted critical claims = 0.
+- [x] `pytest` green.
+- [x] `ruff check` green.
+- [x] `pyrefly check` green.
+- [x] Unsupported accepted critical claims = 0.
