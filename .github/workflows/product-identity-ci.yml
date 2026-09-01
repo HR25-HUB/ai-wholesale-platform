@@ -1,0 +1,56 @@
+name: Product Identity CI
+
+on:
+  pull_request:
+    paths:
+      - "app/domain/product_identity/**"
+      - "app/application/product_identity/**"
+      - "app/adapters/product_identity/**"
+      - "tests/product_identity/**"
+      - "evaluation/golden/**"
+      - "openspec/changes/evidence-gated-product-identity/**"
+      - ".github/workflows/product-identity-ci.yml"
+  push:
+    branches:
+      - "feat/rfq-product-identity-evidence-gate"
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Install uv and Python
+        uses: astral-sh/setup-uv@20cfd1bf945f4377ade1205e4dbc17946fc9a30d # v10.0.1
+        with:
+          python-version: "3.14"
+          enable-cache: true
+
+      - name: Create environment
+        run: |
+          uv venv --python 3.14
+          uv pip install pydantic pytest ruff pyrefly
+
+      - name: Unit and golden tests
+        run: uv run --no-sync pytest tests/product_identity
+
+      - name: Ruff
+        run: >-
+          uv run --no-sync ruff check
+          app/domain/product_identity
+          app/application/product_identity
+          app/adapters/product_identity
+          tests/product_identity
+
+      - name: Pyrefly
+        run: >-
+          uv run --no-sync pyrefly check --output-format=github
+          app/domain/product_identity
+          app/application/product_identity
+          app/adapters/product_identity
