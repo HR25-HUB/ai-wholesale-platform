@@ -18,7 +18,6 @@ from app.domain.product_identity import (
     ProductIdentityProposal,
 )
 
-
 FIXTURE_PATH = Path("evaluation/golden/abb_s203_c16.json")
 
 
