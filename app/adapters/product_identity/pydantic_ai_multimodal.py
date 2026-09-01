@@ -30,8 +30,8 @@ def build_multimodal_user_content(
     request: IdentityInferenceRequest,
 ) -> list[str | ImageUrl]:
     content: list[str | ImageUrl] = [
-        f"Resolve the product identity for this RFQ line:\n"
-        f"{request.rfq_line}\n\nUse only the evidence items below."
+        f"Resolve the product identity for this RFQ line:\n{request.rfq_line}"
+        "\n\nUse only the evidence items below."
     ]
 
     for item in request.evidence.items:
