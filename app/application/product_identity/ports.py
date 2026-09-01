@@ -14,6 +14,10 @@ class SearchPort(Protocol):
     ) -> list[Evidence]: ...
 
 
+class EmbeddingPort(Protocol):
+    async def embed(self, text: str) -> list[float]: ...
+
+
 class MultimodalModelPort(Protocol):
     async def propose(
         self,
