@@ -1,13 +1,13 @@
-from app.domain.product_identity.models import (
+from app.domain.product_identity import (
     Evidence,
     EvidenceBundle,
     EvidenceModality,
+    EvidencePolicy,
     EvidenceRef,
     IdentityDecision,
     ProductClaim,
     ProductIdentityProposal,
 )
-from app.domain.product_identity.policies import EvidencePolicy
 
 
 CRITICAL = {
