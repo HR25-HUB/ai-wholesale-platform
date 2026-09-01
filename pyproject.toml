@@ -1,7 +1,7 @@
-
 [project]
 name = "ai_wholesale_platform"
 version = "0.2.0"
+requires-python = ">=3.14"
 dependencies = [
     "pydantic",
     "prefect",
@@ -13,3 +13,7 @@ dependencies = [
 
 [tool.setuptools.packages.find]
 include = ["app*", "agents*", "flows*", "ai_platform*", "contracts*", "dashboards*", "scripts*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
