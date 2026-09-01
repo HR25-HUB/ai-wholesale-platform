@@ -36,7 +36,7 @@ jobs:
       - name: Create environment
         run: |
           uv venv --python 3.14
-          uv pip install pydantic opensearch-py pytest ruff pyrefly
+          uv pip install pydantic "pydantic-ai==2.0.0" opensearch-py pytest ruff pyrefly
 
       - name: Unit and golden tests
         run: uv run --no-sync pytest tests/product_identity
