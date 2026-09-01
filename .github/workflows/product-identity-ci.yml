@@ -8,6 +8,7 @@ on:
       - "app/adapters/product_identity/**"
       - "tests/product_identity/**"
       - "evaluation/golden/**"
+      - "scripts/bootstrap_product_evidence.py"
       - "openspec/changes/evidence-gated-product-identity/**"
       - ".github/workflows/product-identity-ci.yml"
   push:
@@ -35,7 +36,7 @@ jobs:
       - name: Create environment
         run: |
           uv venv --python 3.14
-          uv pip install pydantic pytest ruff pyrefly
+          uv pip install pydantic opensearch-py pytest ruff pyrefly
 
       - name: Unit and golden tests
         run: uv run --no-sync pytest tests/product_identity
@@ -46,6 +47,7 @@ jobs:
           app/domain/product_identity
           app/application/product_identity
           app/adapters/product_identity
+          scripts/bootstrap_product_evidence.py
           tests/product_identity
 
       - name: Pyrefly
@@ -54,3 +56,4 @@ jobs:
           app/domain/product_identity
           app/application/product_identity
           app/adapters/product_identity
+          scripts/bootstrap_product_evidence.py
