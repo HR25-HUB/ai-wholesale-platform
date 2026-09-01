@@ -9,7 +9,6 @@ from app.domain.product_identity import (
     ProductIdentityProposal,
 )
 
-
 CRITICAL = {
     "manufacturer",
     "product_code",
