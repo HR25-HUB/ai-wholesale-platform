@@ -8,15 +8,15 @@ from app.adapters.product_identity.fakes import (
 )
 from app.application.product_identity.contracts import ResolveProductIdentityCommand
 from app.application.product_identity.handler import ResolveProductIdentityHandler
-from app.domain.product_identity.models import (
+from app.domain.product_identity import (
     Evidence,
     EvidenceModality,
+    EvidencePolicy,
     EvidenceRef,
     IdentityDecision,
     ProductClaim,
     ProductIdentityProposal,
 )
-from app.domain.product_identity.policies import EvidencePolicy
 
 
 FIXTURE_PATH = Path("evaluation/golden/abb_s203_c16.json")
