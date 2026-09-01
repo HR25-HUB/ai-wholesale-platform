@@ -6,15 +6,15 @@ from app.adapters.product_identity.fakes import (
 )
 from app.application.product_identity.contracts import ResolveProductIdentityCommand
 from app.application.product_identity.handler import ResolveProductIdentityHandler
-from app.domain.product_identity.models import (
+from app.domain.product_identity import (
     Evidence,
     EvidenceModality,
+    EvidencePolicy,
     EvidenceRef,
     IdentityDecision,
     ProductClaim,
     ProductIdentityProposal,
 )
-from app.domain.product_identity.policies import EvidencePolicy
 
 
 CRITICAL = {
@@ -76,7 +76,8 @@ def test_resolve_identity_runs_end_to_end_with_fake_adapters() -> None:
     )
 
     assert result.decision is IdentityDecision.ACCEPTED
-    assert result.proposal.claim_by_attribute("product_code") is not None
-    assert result.proposal.claim_by_attribute("product_code").value == "S203-C16"  # type: ignore[union-attr]
+    product_code = result.proposal.claim_by_attribute("product_code")
+    assert product_code is not None
+    assert product_code.value == "S203-C16"
     assert model.last_request is not None
     assert model.last_request.rfq_line == "ABB S203-C16 автомат 3P 16A"
