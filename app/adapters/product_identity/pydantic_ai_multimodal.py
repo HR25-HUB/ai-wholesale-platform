@@ -9,7 +9,6 @@ from app.domain.product_identity.models import (
     ProductIdentityProposal,
 )
 
-
 _INSTRUCTIONS = """
 You are a product identity evidence interpreter for B2B technical products.
 
@@ -31,9 +30,8 @@ def build_multimodal_user_content(
     request: IdentityInferenceRequest,
 ) -> list[str | ImageUrl]:
     content: list[str | ImageUrl] = [
-        "Resolve the product identity for this RFQ line:\n"
-        f"{request.rfq_line}\n\n"
-        "Use only the evidence items below."
+        f"Resolve the product identity for this RFQ line:\n"
+        f"{request.rfq_line}\n\nUse only the evidence items below."
     ]
 
     for item in request.evidence.items:
