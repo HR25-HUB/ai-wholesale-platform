@@ -1,0 +1,57 @@
+{
+  "case_id": "abb-s203-c16-001",
+  "rfq_line": "ABB S203-C16 автомат 3P 16A",
+  "document": {
+    "document_id": "abb-1SXU000023C0202-rev-a",
+    "title": "ABB S200 miniature circuit breakers catalogue",
+    "source_pdf": "https://library.e.abb.com/public/6d90b29c1cca4634b069f0fe9a1f5413/1SXU000023C0202%20RevA_15%20MCBs.pdf",
+    "pdf_page": 21,
+    "printed_page": "15.19"
+  },
+  "critical_attributes": [
+    "manufacturer",
+    "product_code",
+    "poles",
+    "rated_current",
+    "trip_curve"
+  ],
+  "expected_claims": {
+    "manufacturer": "ABB",
+    "product_code": "S203-C16",
+    "poles": "3",
+    "rated_current": "16 A",
+    "trip_curve": "C"
+  },
+  "evidence": [
+    {
+      "evidence_id": "ev-manufacturer",
+      "attribute": "manufacturer",
+      "page": 21,
+      "summary": "ABB identifies the catalogue page as its low-voltage product documentation."
+    },
+    {
+      "evidence_id": "ev-product_code",
+      "attribute": "product_code",
+      "page": 21,
+      "summary": "The C-curve three-pole catalogue table contains product S203-C16."
+    },
+    {
+      "evidence_id": "ev-poles",
+      "attribute": "poles",
+      "page": 21,
+      "summary": "S203 entries are listed under the three-pole column."
+    },
+    {
+      "evidence_id": "ev-rated_current",
+      "attribute": "rated_current",
+      "page": 21,
+      "summary": "The S203-C16 row is associated with rated current 16 A."
+    },
+    {
+      "evidence_id": "ev-trip_curve",
+      "attribute": "trip_curve",
+      "page": 21,
+      "summary": "The page is the S200 C-characteristic catalogue section."
+    }
+  ]
+}
