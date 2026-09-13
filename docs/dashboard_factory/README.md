@@ -28,6 +28,11 @@ Excel/CSV
 `AI proposes -> schema/policy validates -> deterministic tests execute -> human approves semantic/risk-bearing changes -> system publishes -> audit records`
 
 ## Current scope
+### DF-001.2
+One Golden RFQ dataset -> one versioned metric contract -> one deterministic metric result -> one evidence JSON artifact.
+
+The Golden fixture is intentionally human-reviewable JSONL for the first slice. It contains multiple lines for one RFQ so tests prove that `grain: rfq` counts RFQs rather than RFQ lines.
+
 ### DF-001.3
 One verified RFQ metric set -> one generated Excel dashboard.
 
@@ -44,6 +49,27 @@ uv run ruff format --check .
 uv run pyrefly check
 uv run pytest -q
 ```
+
+## Reproduce DF-001.2
+
+```bash
+uv run dashboard-factory verify-metric \
+  --dataset tests/golden/rfq_offer_conversion.jsonl \
+  --contract metrics/sales/rfq_offer_conversion.yaml \
+  --dataset-id golden-rfq-offer-conversion-v1 \
+  --evidence-out evidence/df-001-2/metric_evidence.json
+```
+
+Expected metric semantics for the committed Golden fixture:
+
+```text
+unique RFQ          = 5
+RFQ with offer      = 4
+RFQ with order      = 2
+conversion          = 0.5
+```
+
+The evidence output must contain dataset ID, metric ID/version, engine version, numerator, denominator, value, UTC timestamp, and terminal status.
 
 ## Stop conditions
 Do not publish an artifact when any of these are true:
