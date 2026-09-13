@@ -81,9 +81,7 @@ def test_zero_denominator_is_explicit_terminal_error() -> None:
         name="No Offers",
         grain="rfq",
         unit="ratio",
-        denominator=FilterSpec(
-            all=(Condition(field="status", operator="equals", value="never"),)
-        ),
+        denominator=FilterSpec(all=(Condition(field="status", operator="equals", value="never"),)),
         numerator=FilterSpec(),
     )
 
