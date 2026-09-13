@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Annotated
 
 import typer
 
@@ -14,10 +15,16 @@ app = typer.Typer(no_args_is_help=True)
 
 @app.command("verify-metric")
 def verify_metric(
-    dataset: Path = typer.Option(..., exists=True, dir_okay=False, readable=True),
-    contract: Path = typer.Option(..., exists=True, dir_okay=False, readable=True),
-    dataset_id: str = typer.Option(...),
-    evidence_out: Path = typer.Option(..., dir_okay=False),
+    dataset: Annotated[
+        Path,
+        typer.Option(exists=True, dir_okay=False, readable=True),
+    ],
+    contract: Annotated[
+        Path,
+        typer.Option(exists=True, dir_okay=False, readable=True),
+    ],
+    dataset_id: Annotated[str, typer.Option()],
+    evidence_out: Annotated[Path, typer.Option(dir_okay=False)],
 ) -> None:
     """Calculate one versioned metric from a Golden RFQ fixture and write evidence JSON."""
     rows = load_rfq_fixture(dataset)
