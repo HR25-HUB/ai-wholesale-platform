@@ -28,9 +28,7 @@ def test_rfq_offer_conversion_returns_verified_numerator_denominator_and_value()
         name="RFQ Offer Conversion",
         grain="rfq",
         unit="ratio",
-        denominator=FilterSpec(
-            all=(Condition(field="offer_sent_at", operator="is_not_null"),)
-        ),
+        denominator=FilterSpec(all=(Condition(field="offer_sent_at", operator="is_not_null"),)),
         numerator=FilterSpec(
             all=(Condition(field="order_confirmed", operator="equals", value=True),)
         ),
@@ -55,9 +53,7 @@ def test_numerator_never_exceeds_denominator_for_conversion_metric() -> None:
         name="RFQ Offer Conversion",
         grain="rfq",
         unit="ratio",
-        denominator=FilterSpec(
-            all=(Condition(field="offer_sent_at", operator="is_not_null"),)
-        ),
+        denominator=FilterSpec(all=(Condition(field="offer_sent_at", operator="is_not_null"),)),
         numerator=FilterSpec(
             all=(Condition(field="order_confirmed", operator="equals", value=True),)
         ),
