@@ -51,3 +51,18 @@ jobs:
 
       - name: Pytest
         run: uv run pytest -q
+
+      - name: Reproduce Golden metric evidence
+        run: >-
+          uv run dashboard-factory verify-metric
+          --dataset tests/golden/rfq_offer_conversion.jsonl
+          --contract metrics/sales/rfq_offer_conversion.yaml
+          --dataset-id golden-rfq-offer-conversion-v1
+          --evidence-out evidence/df-001-2/metric_evidence.json
+
+      - name: Upload Golden metric evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: dashboard-factory-df-001-2-evidence
+          path: services/dashboard_factory/evidence/df-001-2/metric_evidence.json
+          if-no-files-found: error
