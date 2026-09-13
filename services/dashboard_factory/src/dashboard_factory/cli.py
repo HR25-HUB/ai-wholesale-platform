@@ -13,6 +13,11 @@ from dashboard_factory.metric_engine import MetricEngine
 app = typer.Typer(no_args_is_help=True)
 
 
+@app.callback()
+def main() -> None:
+    """Verified metric and dashboard generation commands."""
+
+
 @app.command("verify-metric")
 def verify_metric(
     dataset: Annotated[
