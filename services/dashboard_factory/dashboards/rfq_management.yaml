@@ -1,0 +1,21 @@
+dashboard_id: rfq_management
+version: 1.0.0
+title: RFQ Management Dashboard
+
+source:
+  metric_snapshot_set: rfq_core_metrics
+
+kpis:
+  - metric_id: rfq_offer_conversion
+    position: A1
+
+filters:
+  - manager_id
+  - status
+
+charts: []
+
+sheets:
+  - Dashboard
+  - RFQ_Detail
+  - Evidence
