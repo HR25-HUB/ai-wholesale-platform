@@ -19,6 +19,34 @@
       "problemMatcher": []
     },
     {
+      "label": "Dashboard Factory: Sync",
+      "type": "shell",
+      "command": "uv sync --all-groups",
+      "options": {
+        "cwd": "${workspaceFolder}/services/dashboard_factory"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Dashboard Factory: Quality Gates",
+      "type": "shell",
+      "command": "uv run ruff check . && uv run ruff format --check . && uv run pyrefly check && uv run pytest -q",
+      "options": {
+        "cwd": "${workspaceFolder}/services/dashboard_factory"
+      },
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Dashboard Factory: Tests",
+      "type": "shell",
+      "command": "uv run pytest -q",
+      "options": {
+        "cwd": "${workspaceFolder}/services/dashboard_factory"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "Docker: Up",
       "type": "shell",
       "command": "docker compose -f infra/docker-compose.yml up -d",
