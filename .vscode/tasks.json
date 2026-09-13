@@ -19,6 +19,43 @@
       "problemMatcher": []
     },
     {
+      "label": "Dashboard Factory: Sync",
+      "type": "shell",
+      "command": "uv sync --all-groups",
+      "options": {
+        "cwd": "${workspaceFolder}/services/dashboard_factory"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Dashboard Factory: Verify Golden Metric",
+      "type": "shell",
+      "command": "uv run dashboard-factory verify-metric --dataset tests/golden/rfq_offer_conversion.jsonl --contract metrics/sales/rfq_offer_conversion.yaml --dataset-id golden-rfq-offer-conversion-v1 --evidence-out evidence/df-001-2/metric_evidence.json",
+      "options": {
+        "cwd": "${workspaceFolder}/services/dashboard_factory"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Dashboard Factory: Quality Gates",
+      "type": "shell",
+      "command": "uv run ruff check . && uv run ruff format --check . && uv run pyrefly check && uv run pytest -q",
+      "options": {
+        "cwd": "${workspaceFolder}/services/dashboard_factory"
+      },
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "Dashboard Factory: Tests",
+      "type": "shell",
+      "command": "uv run pytest -q",
+      "options": {
+        "cwd": "${workspaceFolder}/services/dashboard_factory"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "Docker: Up",
       "type": "shell",
       "command": "docker compose -f infra/docker-compose.yml up -d",

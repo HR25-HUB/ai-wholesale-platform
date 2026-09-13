@@ -1,0 +1,68 @@
+name: Dashboard Factory CI
+
+on:
+  pull_request:
+    paths:
+      - "services/dashboard_factory/**"
+      - "docs/dashboard_factory/**"
+      - ".github/instructions/dashboard-factory.instructions.md"
+      - ".github/prompts/implement-dashboard-change.prompt.md"
+      - ".github/workflows/dashboard-factory-ci.yml"
+      - "AGENTS.md"
+  push:
+    branches: [main]
+    paths:
+      - "services/dashboard_factory/**"
+      - "docs/dashboard_factory/**"
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: services/dashboard_factory
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install 3.14
+
+      - name: Sync dependencies
+        run: uv sync --all-groups
+
+      - name: Ruff lint
+        run: uv run ruff check .
+
+      - name: Ruff format check
+        run: uv run ruff format --check .
+
+      - name: Pyrefly
+        run: uv run pyrefly check
+
+      - name: Pytest
+        run: uv run pytest -q
+
+      - name: Reproduce Golden metric evidence
+        run: >-
+          uv run dashboard-factory verify-metric
+          --dataset tests/golden/rfq_offer_conversion.jsonl
+          --contract metrics/sales/rfq_offer_conversion.yaml
+          --dataset-id golden-rfq-offer-conversion-v1
+          --evidence-out evidence/df-001-2/metric_evidence.json
+
+      - name: Upload Golden metric evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: dashboard-factory-df-001-2-evidence
+          path: services/dashboard_factory/evidence/df-001-2/metric_evidence.json
+          if-no-files-found: error

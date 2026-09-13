@@ -1,0 +1,16 @@
+metric_id: rfq_offer_conversion
+version: 1.0.0
+name: RFQ Offer Conversion
+grain: rfq
+unit: ratio
+
+denominator:
+  all:
+    - field: offer_sent_at
+      operator: is_not_null
+
+numerator:
+  all:
+    - field: order_confirmed
+      operator: equals
+      value: true
