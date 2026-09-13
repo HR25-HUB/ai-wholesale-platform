@@ -38,7 +38,9 @@ class Condition(BaseModel):
         "is_null",
         "is_not_null",
         "greater_than",
+        "greater_than_or_equal",
         "less_than",
+        "less_than_or_equal",
         "in",
     ]
     value: object | None = None
