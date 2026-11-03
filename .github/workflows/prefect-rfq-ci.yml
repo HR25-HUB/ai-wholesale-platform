@@ -27,8 +27,13 @@ jobs:
       - uses: astral-sh/setup-uv@v6
         with:
           python-version: "3.12"
+      - name: Create isolated Python environment
+        run: |
+          uv python install 3.12
+          uv venv .venv --python 3.12
+          echo "$GITHUB_WORKSPACE/.venv/bin" >> "$GITHUB_PATH"
       - name: Install isolated test tools
-        run: uv pip install --system "prefect>=3,<4" "pydantic>=2,<3" pytest ruff pyrefly
+        run: uv pip install --python .venv/bin/python "prefect>=3,<4" "pydantic>=2,<3" pytest ruff pyrefly
       - name: Ruff
         run: ruff check --select E4,E7,E9,F app/application app/infrastructure contracts/product_matching.py flows/rfq_pipeline.py tests/test_prefect_rfq.py tests/test_real_case_gate.py scripts/verify_real_rfq.py
       - name: Pyrefly
