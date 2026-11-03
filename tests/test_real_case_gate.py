@@ -13,7 +13,6 @@ from app.application.evidence_verification import (
 )
 from app.application.product_matching import MatchRFQLine
 from app.infrastructure.catalog_snapshot import JsonCatalogSnapshot
-from contracts.product_matching import RFQLineInput
 
 
 def digest(data: bytes) -> str:
