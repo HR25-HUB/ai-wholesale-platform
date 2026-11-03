@@ -1,0 +1,25 @@
+name: Architecture Gates
+on:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  domain-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify architecture checker tests
+        run: python -m unittest discover -s tests/architecture -p 'test_*.py' -v
+      - name: Enforce domain independence
+        run: python scripts/check_architecture.py --root . --report architecture-evidence.json
+      - name: Retain evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: architecture-evidence
+          path: architecture-evidence.json
+          if-no-files-found: warn

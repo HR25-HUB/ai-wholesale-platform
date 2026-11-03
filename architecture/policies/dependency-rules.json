@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "rule_id": "ARCH-DOMAIN-001",
+  "description": "Domain layer must not import infrastructure or delivery modules",
+  "scan_roots": ["app/domain"],
+  "forbidden_import_prefixes": [
+    "app.main", "agents", "flows", "ai_platform.data_factory",
+    "dashboards", "scripts", "infra", "fastapi", "prefect",
+    "opensearchpy", "streamlit", "sqlalchemy", "requests", "httpx"
+  ],
+  "exemptions": []
+}
